@@ -2,15 +2,26 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateThiefDTO} from './dto/create-thief-dto';
 import { ThiefEntity } from './entities/thief-entity';
 import { UpdateThiefDTO } from './dto/update-thief-dto';
-import { DatabaseService } from 'src/database/database.service';
 import { Prisma, SuspicionLevel } from 'generated/prisma';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class ThiefService {
-  constructor(private readonly dataBaseService: DatabaseService){}
+  constructor(private readonly authService: AuthService){}
 
-  private readonly listOfThieves: ThiefEntity[] = [];
-  private nextId = 1;
+  private readonly listOfThieves: ThiefEntity[] = [
+    {
+      name: 'Yossi',
+      birthDate: '2014-07-01',
+      levelOfSuspicion: 'Low',
+      dateOfSuspicion: '2025-06-01',
+      dateOfLastUpdate: '2025-04-17',
+      id: 1,
+    }
+    
+
+  ];
+  private nextId = 2;
 
   createNewList(thieves: CreateThiefDTO[]) : ThiefEntity[] {
     // Save the new list of thieves in the database

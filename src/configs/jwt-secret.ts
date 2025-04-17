@@ -1,0 +1,1 @@
+export const JWT_SECRET ='bombordilo-crocodilo-el-tuto-la-fama'
